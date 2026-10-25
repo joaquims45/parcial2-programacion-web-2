@@ -6,7 +6,7 @@
 
         <ul>
             <li><a href="/parcial2-programacion-web-2/index.php">Inicio</a></li>
-            <li><a href="/parcial2-programacion-web-2/pages/productos/index.php">Productos</a></li>
+            <li><a href="/parcial2-programacion-web-2/pages/juegos/index.php">Juegos</a></li>
             <li><a href="/parcial2-programacion-web-2/pages/admin/index.php">Admin</a></li>
         </ul>
 

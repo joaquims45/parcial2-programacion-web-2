@@ -1,0 +1,111 @@
+.layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.filtros {
+    flex: 0 0 250px;          
+    padding: 10px;
+}
+
+.filtros h2 {
+    margin-bottom: 10px;
+}
+
+.filtros ul {
+    list-style: none;
+    padding: 10px;
+    margin: 10px ;
+}
+
+.filtros ul li {
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.filtros ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.filtros ul li a:hover {
+    color: #00ff00;
+    text-decoration: underline;
+}
+
+.listado {
+    flex: 1;                 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+
+.juego-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #0d5f11;  
+    border-radius: 5px;
+}
+
+.juego-card:hover {
+    background-color: #064106;  
+    cursor: pointer;
+}
+
+.juego-card img {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.juego-card .info {
+    flex: 1;      
+}
+
+.juego-card .datos {
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+}
+
+p.descripcion {
+    font-size: 14px;
+    color: #fafafa;
+}
+
+p.precio {
+    font-weight: bold;
+    background-color: #064106;
+    padding: 5px;
+}
+
+main {
+    min-height: 90vh;
+}
+@media (max-width: 800px) {
+    .layout {
+        flex-direction: column;  
+    }
+    .filtros {
+        flex: none;
+    }
+    .juego-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .juego-card img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+.filtros a.activo {
+    font-weight: bold;
+}
