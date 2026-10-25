@@ -1,6 +1,4 @@
-* {
-    box-sizing: border-box;
-}
+
 
 body {
     background-color: #000000;
@@ -50,4 +48,8 @@ div.juego p {
     text-align: center;
     margin-top: 10px;
     font-size: 1rem;
+}
+
+* {
+    box-sizing: border-box;
 }

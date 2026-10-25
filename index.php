@@ -53,10 +53,10 @@
             <?php endforeach; ?>
         </section>
 
-    
     </main>
-    <?php include_once("components/footer/index.php"); ?>
-    </body>
+                        <?php include_once("components/footer/index.php"); ?>
+
+</body>
 </html>
 
 
