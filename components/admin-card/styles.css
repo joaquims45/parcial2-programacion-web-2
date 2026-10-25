@@ -1,0 +1,76 @@
+div.juegos-destacados{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+div.juego {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+div.juego p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+
+div.juego img{
+    width: 460px;
+    height: 215px;
+}
+
+div.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+div.acciones form {
+    margin: 0;
+}
+
+.editar,
+.borrar {
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+.editar {
+    background-color: transparent;
+    color: #4ade80;
+    border-color: #4ade80;
+}
+
+.editar:hover {
+    background-color: #4ade80;
+    color: #111;
+}
+
+.borrar {
+    background-color: transparent;
+    color: #f87171;
+    border-color: #f87171;
+}
+
+.borrar:hover {
+    background-color: #f87171;
+    color: #111;
+}
+
+.editar:active,
+.borrar:active {
+    transform: scale(0.96);
+}

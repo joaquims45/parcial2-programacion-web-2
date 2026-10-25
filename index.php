@@ -12,7 +12,7 @@
     
     
     <?php 
-    $juegos_destacados = [
+    $resultado_juegos = [
         [
             "nombre" => "Bongo Cat",
             "descripcion" => "Bongo cat necesita tu ayuda. ¡Bongo cat necesita más gorros! Cada vez que pulses una tecla, Bongo cat dará un puñetazo a tu barra de tareas. Escribe, haz clic, juega y trabaja para conseguir más puntos. ¿Qué gorros encontrarás?",
@@ -42,14 +42,10 @@
         <section> 
 
         <h2 class="titulo-juegos">Juegos destacados</h2>
+        <?php foreach ($resultado_juegos as $juego): ?>
 
-        <div class="juegos-destacados">
-            <?php foreach ($juegos_destacados as $juego): ?>
-                <div class="juego">
-                    <img src="<?php echo $juego['imagen']; ?>" alt="<?php echo $juego['nombre']; ?>">
-                    <h3><?php echo $juego['nombre']; ?></h3>
-                    <p><?php echo $juego['descripcion']; ?></p>
-                </div>
+        <?php include_once("components/juegos-card/index.php"); ?>
+        
             <?php endforeach; ?>
         </section>
 
