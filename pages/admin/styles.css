@@ -32,3 +32,22 @@ form label, input{
     gap: 15px;
 }
 
+
+.flash {
+    margin: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.flash-exito {
+    background-color: #14532d;
+    border: 1px solid #4ade80;
+    color: #dcfce7;
+}
+
+.flash-error {
+    background-color: #7f1d1d;
+    border: 1px solid #f87171;
+    color: #fee2e2;
+}

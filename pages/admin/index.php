@@ -1,5 +1,6 @@
 <?php include_once(__DIR__ . '/../../config/database.php'); ?>
 <?php require_once __DIR__ . '/../../config/base_url.php'; ?>
+<?php require_once __DIR__ . '/../../config/flash.php'; ?>
 
 <?php $sql_categorias = "SELECT * FROM categorias";?>
 <?php $resultado_categorias = $conexion->query($sql_categorias);?>
@@ -12,47 +13,85 @@
 <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['borrar_juego_id'])) {
     $juego_id = (int) $_POST['borrar_juego_id'];
 
-    $stmt = $conexion->prepare($sql_borrar_juego);
-    $stmt->bind_param('i', $juego_id);
-    $stmt->execute();
-    $stmt->close();
+    try {
+        $stmt = $conexion->prepare($sql_borrar_juego);
+        $stmt->bind_param('i', $juego_id);
+        $stmt->execute();
+        $filas_afectadas = $stmt->affected_rows;
+        $stmt->close();
+
+        if ($filas_afectadas > 0) {
+            set_flash('exito', 'Juego eliminado correctamente.');
+        } else {
+            set_flash('error', 'El juego que intentas eliminar no existe.');
+        }
+    } catch (mysqli_sql_exception $e) {
+        error_log('Error al eliminar juego: ' . $e->getMessage());
+        set_flash('error', 'Error al eliminar el juego.');
+    }
 
     header("Location: " . BASE_URL . "/pages/admin/index.php");
     exit();
 }?>
 
-<?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar_juego'])) {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = (float) $_POST['precio'];
-    $stock = (int) $_POST['stock'];
-    $categoria_id = (int) $_POST['categoria_id'];
-    $imagen = $_POST['imagen'];
+<?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_juego'])) {
+    $id = (int) ($_POST['id'] ?? 0);
+    $nombre = trim($_POST['nombre'] ?? '');
+    $descripcion = trim($_POST['descripcion'] ?? '');
+    $precio = (float) ($_POST['precio'] ?? 0);
+    $stock = (int) ($_POST['stock'] ?? 0);
+    $categoria_id = (int) ($_POST['categoria_id'] ?? 0);
+    $imagen = trim($_POST['imagen'] ?? '');
 
-    $sql_agregar_juego = "INSERT INTO juegos (nombre, descripcion, precio, stock, categoria_id, imagen) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conexion->prepare($sql_agregar_juego);
-    $stmt->bind_param('ssdiis', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen);
-    $stmt->execute();
-    $stmt->close();
+    $errores = [];
+    if (empty($nombre) || mb_strlen($nombre) > 100) {
+        $errores[] = 'El nombre es obligatorio (máximo 100 caracteres).';
+    }
+    if (empty($descripcion)) {
+        $errores[] = 'La descripción es obligatoria.';
+    }
+    if ($precio < 0) {
+        $errores[] = 'El precio no puede ser negativo.';
+    }
+    if ($stock < 0) {
+        $errores[] = 'El stock no puede ser negativo.';
+    }
+    if (empty($imagen)) {
+        $errores[] = 'La imagen es obligatoria.';
+    }
 
-    header("Location: " . BASE_URL . "/pages/admin/index.php");
-    exit();
-}?>
+    try {
+        $stmt = $conexion->prepare("SELECT id FROM categorias WHERE id = ?");
+        $stmt->bind_param('i', $categoria_id);
+        $stmt->execute();
+        $categoria_existe = $stmt->get_result()->num_rows > 0;
+        $stmt->close();
 
-<?PHP if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_POST['editar_juego'])) {
-    $id = (int) $_POST['id'];
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = (float) $_POST['precio'];
-    $stock = (int) $_POST['stock'];
-    $categoria_id = (int) $_POST['categoria_id'];
-    $imagen = $_POST['imagen'];
+        if (!$categoria_existe) {
+            $errores[] = 'La categoría seleccionada no es válida.';
+        }
 
-    $sql_editar_juego = "UPDATE juegos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ? WHERE id = ?";
-    $stmt = $conexion->prepare($sql_editar_juego);
-    $stmt->bind_param('ssdiisi', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $id);
-    $stmt->execute();
-    $stmt->close();
+        if (!empty($errores)) {
+            set_flash('error', implode(' ', $errores));
+        } elseif ($id > 0) {
+            $sql_editar_juego = "UPDATE juegos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ? WHERE id = ?";
+            $stmt = $conexion->prepare($sql_editar_juego);
+            $stmt->bind_param('ssdiisi', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $id);
+            $stmt->execute();
+            $stmt->close();
+            set_flash('exito', 'Juego editado correctamente.');
+        } else {
+            $sql_agregar_juego = "INSERT INTO juegos (nombre, descripcion, precio, stock, categoria_id, imagen) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conexion->prepare($sql_agregar_juego);
+            $stmt->bind_param('ssdiis', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen);
+            $stmt->execute();
+            $stmt->close();
+            set_flash('exito', 'Juego agregado correctamente.');
+        }
+    } catch (mysqli_sql_exception $e) {
+        error_log('Error al guardar juego: ' . $e->getMessage());
+        set_flash('error', 'Error al guardar el juego.');
+    }
 
     header("Location: " . BASE_URL . "/pages/admin/index.php");
     exit();
@@ -74,6 +113,12 @@
 <body>
 <?php include_once(__DIR__ . '/../../components/header/index.php'); ?>
 
+<?php $flash = get_flash(); ?>
+<?php if ($flash): ?>
+    <div class="flash flash-<?php echo htmlspecialchars($flash['tipo']); ?>">
+        <?php echo htmlspecialchars($flash['mensaje']); ?>
+    </div>
+<?php endif; ?>
 <button class="nuevo" type="button" onclick="abrirModal()">+ Nuevo juego</button>
 
 <?php foreach ($resultado_juegos as $juego): ?>
@@ -113,8 +158,8 @@
     <input type="text" name="imagen" id="f-imagen" required>
 
 
-        <input type="hidden" name="agregar_juego" value="1">
-        <button type="submit">Agregar</button>
+        <input type="hidden" name="guardar_juego" value="1">
+        <button type="submit">Guardar</button>
         <button type="button" onclick="document.getElementById('agregarJuegoDialog').close();">Cancelar</button>
     </form>
     </dialog>
