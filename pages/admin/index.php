@@ -1,8 +1,5 @@
 <?php include_once(__DIR__ . '/../../config/database.php'); ?>
 
-<?php
-$conexion = new mysqli($host, $usuario, $password, $database);?>
-
 <?php $sql_categorias = "SELECT * FROM categorias";?>
 <?php $resultado_categorias = $conexion->query($sql_categorias);?>
 

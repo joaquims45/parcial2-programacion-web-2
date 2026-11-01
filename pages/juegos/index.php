@@ -1,8 +1,6 @@
 <?php
 include_once(__DIR__ . '/../../config/database.php');
 
-$conexion = new mysqli($host, $usuario, $password, $database);
-
 $categorias = $conexion->query("SELECT * FROM categorias");
 
 $categoria_id = (int) ($_GET['categoria'] ?? 0);
