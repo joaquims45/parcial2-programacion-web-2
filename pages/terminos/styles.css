@@ -1,0 +1,19 @@
+main.terminos {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+main.terminos h1 {
+    margin-bottom: 5px;
+}
+
+main.terminos h2 {
+    margin-top: 30px;
+    color: #4ade80;
+    font-size: 1.3rem;
+}
+
+main.terminos ul {
+    padding-left: 25px;
+}
