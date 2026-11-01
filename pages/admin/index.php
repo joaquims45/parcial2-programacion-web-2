@@ -172,7 +172,7 @@ try {
     <label for="f-categoria">Categoría:</label>
     <select name="categoria_id" id="f-categoria" required>
     <?php foreach ($resultado_categorias as $categoria): ?>
-        <option value="<?php echo $categoria['id']; ?>">
+        <option value="<?php echo htmlspecialchars($categoria['id']); ?>">
             <?php echo htmlspecialchars($categoria['nombre']); ?>
         </option>
     <?php endforeach; ?>

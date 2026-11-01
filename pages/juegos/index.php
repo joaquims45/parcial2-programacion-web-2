@@ -56,8 +56,8 @@ $stmt->close();
             <li><a href="?<?php echo $buscar_nombre !== '' ? 'buscar_por_nombre=' . urlencode($buscar_nombre) : ''; ?>" class="<?php echo $categoria_id === 0 ? 'activo' : ''; ?>">Todas</a></li>
             <?php while($categoria = $categorias->fetch_assoc()): ?>
                 <li>
-                    <a href="?categoria=<?php echo (int) $categoria['id']; ?><?php echo $buscar_nombre !== '' ? '&buscar_por_nombre=' . urlencode($buscar_nombre) : ''; ?>"
-                       class="<?php echo $categoria_id === (int) $categoria['id'] ? 'activo' : ''; ?>">
+                    <a href="?categoria=<?php echo (int) htmlspecialchars($categoria['id']); ?><?php echo $buscar_nombre !== '' ? '&buscar_por_nombre=' . urlencode($buscar_nombre) : ''; ?>"
+                       class="<?php echo $categoria_id === (int) htmlspecialchars($categoria['id']) ? 'activo' : ''; ?>">
                         <?php echo htmlspecialchars($categoria['nombre']); ?>
                     </a>
                 </li>
@@ -79,7 +79,7 @@ $stmt->close();
                 <p class="descripcion"><?php echo htmlspecialchars($juego['descripcion']); ?></p>
             </div>
             <div class="datos">
-                <p>Stock: <?php echo $juego['stock']; ?></p>    
+                <p>Stock: <?php echo htmlspecialchars($juego['stock']); ?></p>    
                 <p class="precio">Precio: $<?php echo number_format($juego['precio'], 2); ?></p>
             </div>
         </div>
