@@ -106,6 +106,7 @@
     <title>Administración</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/pages/admin/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/components/admin-card/styles.css">
     <script src="<?php echo BASE_URL; ?>/pages/admin/script.js" defer></script>
 
 </head>
@@ -121,11 +122,13 @@
 <?php endif; ?>
 <button class="nuevo" type="button" onclick="abrirModal()">+ Nuevo juego</button>
 
-<?php foreach ($resultado_juegos as $juego): ?>
-
-    <?php include_once(__DIR__ . '/../../components/admin-card/index.php'); ?>
-
-<?php endforeach; ?>
+<section>
+    <div class="juegos-destacados">
+        <?php foreach ($resultado_juegos as $juego): ?>
+            <?php include(__DIR__ . '/../../components/admin-card/index.php'); ?>
+        <?php endforeach; ?>
+    </div>
+</section>
 
 
 <dialog id="agregarJuegoDialog">
