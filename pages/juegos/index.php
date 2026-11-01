@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../config/base_url.php';
 include_once(__DIR__ . '/../../config/database.php');
 
 $categorias = $conexion->query("SELECT * FROM categorias");
@@ -18,8 +19,8 @@ $juegos = $conexion->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juegos</title>
-    <link rel="stylesheet" href="/parcial2-programacion-web-2/styles.css">
-    <link rel="stylesheet" href="/parcial2-programacion-web-2/pages/juegos/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/pages/juegos/styles.css">
 </head>
 
 <body>
@@ -48,7 +49,7 @@ $juegos = $conexion->query($sql);
 
         <?php foreach ($juegos as $juego): ?>
         <div class="juego-card">
-            <img src="<?php echo $juego['imagen']; ?>" alt="<?php echo htmlspecialchars($juego['nombre']); ?>">
+            <img src="<?php echo htmlspecialchars(url_imagen($juego['imagen'])); ?>" alt="<?php echo htmlspecialchars($juego['nombre']); ?>">
             <div class="info">
                 <h2><?php echo htmlspecialchars($juego['nombre']); ?></h2>
                 <p class="descripcion"><?php echo htmlspecialchars($juego['descripcion']); ?></p>

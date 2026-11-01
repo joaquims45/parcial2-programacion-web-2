@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/parcial2-programacion-web-2/components/juegos-card/styles.css">
+<link rel="stylesheet" href="<?php echo BASE_URL; ?>/components/juegos-card/styles.css">
 <section> 
 
 <div class="juegos-destacados">

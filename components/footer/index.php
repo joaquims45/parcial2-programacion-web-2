@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="/parcial2-programacion-web-2/components/footer/styles.css">
+<link rel="stylesheet" href="<?php echo BASE_URL; ?>/components/footer/styles.css">
 
 <footer> 
-    <img src="/parcial2-programacion-web-2/assets/logo.jpg" alt="Logo" width="50px" height="50px"> 
+    <img src="<?php echo BASE_URL; ?>/assets/logo.jpg" alt="Logo" width="50px" height="50px"> 
     <div class="contacto">
         <h3>Contacto</h3>
         <p>Teléfono: +1 123 456 7890</p>
@@ -16,8 +16,8 @@
 
     <div class="informacion">
         <h3>Información</h3>
-        <a href="/parcial2-programacion-web-2/pages/terminos/index.php">Términos y condiciones</a>
-        <a href="/parcial2-programacion-web-2/pages/politicas/index.php">Políticas de privacidad</a>
+        <a href="<?php echo BASE_URL; ?>/pages/terminos/index.php">Términos y condiciones</a>
+        <a href="<?php echo BASE_URL; ?>/pages/politicas/index.php">Políticas de privacidad</a>
     </div>
 
         <p>2024 GameStore. Todos los derechos reservados.</p>

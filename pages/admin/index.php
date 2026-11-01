@@ -1,4 +1,5 @@
 <?php include_once(__DIR__ . '/../../config/database.php'); ?>
+<?php require_once __DIR__ . '/../../config/base_url.php'; ?>
 
 <?php $sql_categorias = "SELECT * FROM categorias";?>
 <?php $resultado_categorias = $conexion->query($sql_categorias);?>
@@ -16,7 +17,7 @@
     $stmt->execute();
     $stmt->close();
 
-    header("Location: /parcial2-programacion-web-2/pages/admin/index.php");
+    header("Location: " . BASE_URL . "/pages/admin/index.php");
     exit();
 }?>
 
@@ -34,7 +35,7 @@
     $stmt->execute();
     $stmt->close();
 
-    header("Location: /parcial2-programacion-web-2/pages/admin/index.php");
+    header("Location: " . BASE_URL . "/pages/admin/index.php");
     exit();
 }?>
 
@@ -53,7 +54,7 @@
     $stmt->execute();
     $stmt->close();
 
-    header("Location: /parcial2-programacion-web-2/pages/admin/index.php");
+    header("Location: " . BASE_URL . "/pages/admin/index.php");
     exit();
 }?>
 
@@ -64,9 +65,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración</title>
-    <link rel="stylesheet" href="/parcial2-programacion-web-2/styles.css">
-    <link rel="stylesheet" href="/parcial2-programacion-web-2/pages/admin/styles.css">
-    <script src="/parcial2-programacion-web-2/pages/admin/script.js" defer></script>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/pages/admin/styles.css">
+    <script src="<?php echo BASE_URL; ?>/pages/admin/script.js" defer></script>
 
 </head>
 
