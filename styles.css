@@ -27,3 +27,8 @@ h2.titulo-juegos {
     margin-bottom: 20px;
     font-size: 2rem;
 }
+
+div.juegos-destacados{
+    display: flex;
+    gap: 20px;
+    justify-content: center;}

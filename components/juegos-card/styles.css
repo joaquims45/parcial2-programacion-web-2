@@ -1,7 +1,3 @@
-div.juegos-destacados{
-    display: flex;
-    gap: 20px;
-    justify-content: center;}
 
 div.juego {
     background-color: #1a1a1a;

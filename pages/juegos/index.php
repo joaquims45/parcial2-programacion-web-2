@@ -54,14 +54,14 @@ $stmt->close();
         <?php include_once(__DIR__ . '/../../components/buscar-juegos/index.php'); ?>
         <ul>
             <li><a href="?<?php echo $buscar_nombre !== '' ? 'buscar_por_nombre=' . urlencode($buscar_nombre) : ''; ?>" class="<?php echo $categoria_id === 0 ? 'activo' : ''; ?>">Todas</a></li>
-            <?php foreach ($categorias as $categoria): ?>
+            <?php while($categoria = $categorias->fetch_assoc()): ?>
                 <li>
                     <a href="?categoria=<?php echo (int) $categoria['id']; ?><?php echo $buscar_nombre !== '' ? '&buscar_por_nombre=' . urlencode($buscar_nombre) : ''; ?>"
                        class="<?php echo $categoria_id === (int) $categoria['id'] ? 'activo' : ''; ?>">
                         <?php echo htmlspecialchars($categoria['nombre']); ?>
                     </a>
                 </li>
-            <?php endforeach; ?>
+            <?php endwhile; ?>
         </ul>
     </aside>
 
@@ -71,7 +71,7 @@ $stmt->close();
             <p>No se encontraron juegos.</p>
         <?php endif; ?>
 
-        <?php foreach ($juegos as $juego): ?>
+        <?php while ($juego = $juegos->fetch_assoc()): ?>
         <div class="juego-card">
             <img src="<?php echo htmlspecialchars(url_imagen($juego['imagen'])); ?>" alt="<?php echo htmlspecialchars($juego['nombre']); ?>">
             <div class="info">
@@ -83,7 +83,7 @@ $stmt->close();
                 <p class="precio">Precio: $<?php echo number_format($juego['precio'], 2); ?></p>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php endwhile; ?>
     </main>
 </div>
 

@@ -60,7 +60,7 @@ try {
     $stock = (int) ($_POST['stock'] ?? 0);
     $categoria_id = (int) ($_POST['categoria_id'] ?? 0);
     $imagen = trim($_POST['imagen'] ?? '');
-
+    $destacado = isset($_POST['destacado']) ? 1 : 0;
     $errores = [];
     if (empty($nombre) || mb_strlen($nombre) > 100) {
         $errores[] = 'El nombre es obligatorio (máximo 100 caracteres).';
@@ -92,16 +92,16 @@ try {
         if (!empty($errores)) {
             set_flash('error', implode(' ', $errores));
         } elseif ($id > 0) {
-            $sql_editar_juego = "UPDATE juegos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ? WHERE id = ?";
+            $sql_editar_juego = "UPDATE juegos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ?, destacado = ? WHERE id = ?";
             $stmt = $conexion->prepare($sql_editar_juego);
-            $stmt->bind_param('ssdiisi', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $id);
+            $stmt->bind_param('ssdiisii', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $destacado, $id);
             $stmt->execute();
             $stmt->close();
             set_flash('exito', 'Juego editado correctamente.');
         } else {
-            $sql_agregar_juego = "INSERT INTO juegos (nombre, descripcion, precio, stock, categoria_id, imagen) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql_agregar_juego = "INSERT INTO juegos (nombre, descripcion, precio, stock, categoria_id, imagen, destacado) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conexion->prepare($sql_agregar_juego);
-            $stmt->bind_param('ssdiis', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen);
+            $stmt->bind_param('ssdiisii', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $destacado);
             $stmt->execute();
             $stmt->close();
             set_flash('exito', 'Juego agregado correctamente.');
@@ -183,6 +183,9 @@ try {
 
 
         <input type="hidden" name="guardar_juego" value="1">
+        
+        <label for="f-destacado">Destacado</label>
+    <input type="checkbox" name="destacado" id="f-destacado">
         <button type="submit">Guardar</button>
         <button type="button" onclick="document.getElementById('agregarJuegoDialog').close();">Cancelar</button>
     </form>

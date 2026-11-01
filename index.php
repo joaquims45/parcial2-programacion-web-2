@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/config/base_url.php'; ?>
 <?php require_once __DIR__ . '/config/database.php'; ?>
 
-<?php $sql= "SELECT * FROM juegos LIMIT 4";?>
+<?php $sql= "SELECT * FROM juegos WHERE destacado = 1"; ?>
 <?php $resultado_juegos = $conexion->query($sql);?>
 
 <!DOCTYPE html>
@@ -26,13 +26,15 @@
         </section>
 
         <section> 
-
         <h2 class="titulo-juegos">Juegos destacados</h2>
+
+        <div class="juegos-destacados">
         <?php while ($juego = $resultado_juegos->fetch_assoc()): ?>
 
-        <?php include_once("components/juegos-card/index.php"); ?>
+        <?php include("components/juegos-card/index.php"); ?>
         
-            <?php endwhile; ?>
+        <?php endwhile; ?>
+        </div>
         </section>
 
     </main>

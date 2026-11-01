@@ -9,5 +9,6 @@ function abrirModal(juego = null) {
     document.getElementById('f-stock').value       = juego ? juego.stock : '';
     document.getElementById('f-imagen').value      = juego ? juego.imagen : '';
     document.getElementById('f-categoria').value   = juego ? juego.categoria_id : '';
+    document.getElementById('f-destacado').checked = juego ? juego.destacado : false;
     modal.showModal();
 }
