@@ -9,7 +9,5 @@
             <li><a href="<?php echo BASE_URL; ?>/pages/juegos/index.php">Juegos</a></li>
             <li><a href="<?php echo BASE_URL; ?>/pages/admin/index.php">Admin</a></li>
         </ul>
-
-        <input type="text" placeholder="Buscar..."> </input>
     </nav>
 </header>

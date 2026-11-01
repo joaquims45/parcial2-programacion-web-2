@@ -5,8 +5,26 @@
 <?php $sql_categorias = "SELECT * FROM categorias";?>
 <?php $resultado_categorias = $conexion->query($sql_categorias);?>
 
-<?php $sql_juegos = "SELECT * FROM juegos";?>
-<?php $resultado_juegos = $conexion->query($sql_juegos);?>
+<?php
+$buscar_nombre = trim($_GET['buscar_por_nombre'] ?? '');
+
+try {
+    if ($buscar_nombre !== '') {
+        $termino_busqueda = '%' . $buscar_nombre . '%';
+        $stmt = $conexion->prepare("SELECT * FROM juegos WHERE nombre LIKE ? ORDER BY id");
+        $stmt->bind_param('s', $termino_busqueda);
+    } else {
+        $stmt = $conexion->prepare("SELECT * FROM juegos ORDER BY id");
+    }
+    $stmt->execute();
+    $resultado_juegos = $stmt->get_result();
+    $stmt->close();
+} catch (mysqli_sql_exception $e) {
+    error_log('Error al listar juegos: ' . $e->getMessage());
+    set_flash('error', 'Error al listar los juegos.');
+    $resultado_juegos = [];
+}
+?>
 
 <?php $sql_borrar_juego = "DELETE FROM juegos WHERE id = ?";?>
 
@@ -112,6 +130,7 @@
 </head>
 
 <body>
+    
 <?php include_once(__DIR__ . '/../../components/header/index.php'); ?>
 
 <?php $flash = get_flash(); ?>
@@ -121,6 +140,8 @@
     </div>
 <?php endif; ?>
 <button class="nuevo" type="button" onclick="abrirModal()">+ Nuevo juego</button>
+
+<?php include_once(__DIR__ . '/../../components/buscar-juegos/index.php'); ?>
 
 <section>
     <div class="juegos-destacados">
