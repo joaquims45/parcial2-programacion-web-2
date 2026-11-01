@@ -1,0 +1,40 @@
+.buscador {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.buscador label {
+    position: absolute;
+    left: -9999px;
+}
+
+.buscador input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    background-color: #1a1a1a;
+    color: #f0f4ff;
+    border: 1px solid #333;
+    border-radius: 6px;
+}
+
+.buscador input[type="text"]:focus {
+    outline: none;
+    border-color: #4ade80;
+}
+
+.buscador button {
+    padding: 10px 18px;
+    background-color: #4ade80;
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.buscador button:hover {
+    background-color: #22c55e;
+}

@@ -1,4 +1,9 @@
 <?php require_once __DIR__ . '/config/base_url.php'; ?>
+<?php require_once __DIR__ . '/config/database.php'; ?>
+
+<?php $sql= "SELECT * FROM juegos LIMIT 4";?>
+<?php $resultado_juegos = $conexion->query($sql);?>
+
 <!DOCTYPE html>
 
 <html>
@@ -11,27 +16,7 @@
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles.css">
     </head>
     
-    
-    <?php 
-    $resultado_juegos = [
-        [
-            "nombre" => "Bongo Cat",
-            "descripcion" => "Bongo cat necesita tu ayuda. ¡Bongo cat necesita más gorros! Cada vez que pulses una tecla, Bongo cat dará un puñetazo a tu barra de tareas. Escribe, haz clic, juega y trabaja para conseguir más puntos. ¿Qué gorros encontrarás?",
-            "imagen" => BASE_URL . "/assets/bongo_cat.jpg"
-        ],
-        [
-            "nombre" => "Lego Batman",
-            "descripcion" => "Renace como el Caballero Oscuro y vive la historia de Batman en una atrevida aventura llena de acción y combates rompedores que se desarrolla en el mundo abierto de Gotham City, todo ello con el humor característico de LEGO que tanto gusta a los fans.",
-            "imagen" => BASE_URL . "/assets/lego_batman.jpg"
-        ],
-        [
-            "nombre" => "EA Sports FC 27",
-            "descripcion" => "Te damos la bienvenida a The World's Game en EA SPORTS FC™ 27. Adéntrate en The Grounds, un espacio de juego donde las calles se encuentran con el estadio, y siente un mayor control en cada modo, ya que las innovaciones impulsadas por la comunidad ofrecen una jugabilidad más fiel al fútbol.",
-            "imagen" => BASE_URL . "/assets/ea_sports.jpg"
-        ]
-    ];
-
-    ?>    
+ 
     <body>
         <?php include_once("components/header/index.php"); ?>
 
@@ -43,11 +28,11 @@
         <section> 
 
         <h2 class="titulo-juegos">Juegos destacados</h2>
-        <?php foreach ($resultado_juegos as $juego): ?>
+        <?php while ($juego = $resultado_juegos->fetch_assoc()): ?>
 
         <?php include_once("components/juegos-card/index.php"); ?>
         
-            <?php endforeach; ?>
+            <?php endwhile; ?>
         </section>
 
     </main>

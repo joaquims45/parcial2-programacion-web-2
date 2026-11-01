@@ -145,9 +145,9 @@ try {
 
 <section>
     <div class="juegos-destacados">
-        <?php foreach ($resultado_juegos as $juego): ?>
+        <?php while ($juego = $resultado_juegos->fetch_assoc()): ?>
             <?php include(__DIR__ . '/../../components/admin-card/index.php'); ?>
-        <?php endforeach; ?>
+        <?php endwhile; ?>
     </div>
 </section>
 

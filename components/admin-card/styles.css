@@ -18,6 +18,7 @@ div.juego p {
     text-align: center;
     margin-top: 10px;
     font-size: 1rem;
+    min-height: 150px;
 }
 
 
