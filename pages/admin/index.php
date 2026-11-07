@@ -111,7 +111,7 @@ try {
         } else {
             $sql_agregar_juego = "INSERT INTO juegos (nombre, descripcion, precio, stock, categoria_id, imagen, destacado) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conexion->prepare($sql_agregar_juego);
-            $stmt->bind_param('ssdiisii', $nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $destacado);
+            $stmt->bind_param('ssdiisi',$nombre, $descripcion, $precio, $stock, $categoria_id, $imagen, $destacado);
             $stmt->execute();
             $stmt->close();
             set_flash('exito', 'Juego agregado correctamente.');
