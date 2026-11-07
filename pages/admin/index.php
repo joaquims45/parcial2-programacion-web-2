@@ -6,7 +6,17 @@
 <?php $resultado_categorias = $conexion->query($sql_categorias);?>
 
 <?php
-$buscar_nombre = trim($_GET['buscar_por_nombre'] ?? '');
+if (isset($_GET['buscar_por_nombre'])) {
+    $buscar_nombre = trim($_GET['buscar_por_nombre']);
+    setcookie('ultimo_filtro', $buscar_nombre, [
+        'expires' => time() + 3600,
+        'path' => '/',
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+} else {
+    $buscar_nombre = trim($_COOKIE['ultimo_filtro'] ?? '');
+}
 
 try {
     if ($buscar_nombre !== '') {
@@ -123,9 +133,9 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/pages/admin/styles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/pages/admin/styles.css?v=<?php echo filemtime(__DIR__ . '/styles.css'); ?>">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/components/admin-card/styles.css">
-    <script src="<?php echo BASE_URL; ?>/pages/admin/script.js" defer></script>
+    <script src="<?php echo BASE_URL; ?>/pages/admin/script.js?v=<?php echo filemtime(__DIR__ . '/script.js'); ?>" defer></script>
 
 </head>
 
@@ -139,9 +149,10 @@ try {
         <?php echo htmlspecialchars($flash['mensaje']); ?>
     </div>
 <?php endif; ?>
-<button class="nuevo" type="button" onclick="abrirModal()">+ Nuevo juego</button>
-
-<?php include_once(__DIR__ . '/../../components/buscar-juegos/index.php'); ?>
+<div class="admin-barra">
+    <button class="nuevo" type="button" onclick="abrirModal()">+ Nuevo juego</button>
+    <?php include_once(__DIR__ . '/../../components/buscar-juegos/index.php'); ?>
+</div>
 
 <section>
     <div class="juegos-destacados">
@@ -153,43 +164,65 @@ try {
 
 
 <dialog id="agregarJuegoDialog">
-    <form method="POST" action="">
-    <h2 id="modal-titulo">Agregar Juego</h2>
-    <input type="hidden" name="id" id="f-id" value="0">
+    <form method="POST" action="" class="modal-form">
+        <div class="modal-header">
+            <h2 id="modal-titulo">Agregar juego</h2>
+            <button type="button" class="modal-cerrar" aria-label="Cerrar"
+                    onclick="document.getElementById('agregarJuegoDialog').close();">&times;</button>
+        </div>
 
-    <label for="f-nombre">Nombre:</label>
-    <input type="text" name="nombre" id="f-nombre" required>
-
-    <label for="f-descripcion">Descripción:</label>
-    <textarea name="descripcion" id="f-descripcion" required></textarea>
-
-    <label for="f-precio">Precio:</label>
-    <input type="number" step="0.01" name="precio" id="f-precio" required>
-
-    <label for="f-stock">Stock:</label>
-    <input type="number" name="stock" id="f-stock" required>
-
-    <label for="f-categoria">Categoría:</label>
-    <select name="categoria_id" id="f-categoria" required>
-    <?php foreach ($resultado_categorias as $categoria): ?>
-        <option value="<?php echo htmlspecialchars($categoria['id']); ?>">
-            <?php echo htmlspecialchars($categoria['nombre']); ?>
-        </option>
-    <?php endforeach; ?>
-</select>
-
-    <label for="f-imagen">URL de la Imagen:</label>
-    <input type="text" name="imagen" id="f-imagen" required>
-
-
+        <input type="hidden" name="id" id="f-id" value="0">
         <input type="hidden" name="guardar_juego" value="1">
-        
-        <label for="f-destacado">Destacado</label>
-    <input type="checkbox" name="destacado" id="f-destacado">
-        <button type="submit">Guardar</button>
-        <button type="button" onclick="document.getElementById('agregarJuegoDialog').close();">Cancelar</button>
+
+        <div class="campo">
+            <label for="f-nombre">Nombre</label>
+            <input type="text" name="nombre" id="f-nombre" maxlength="100" required>
+        </div>
+
+        <div class="campo">
+            <label for="f-descripcion">Descripción</label>
+            <textarea name="descripcion" id="f-descripcion" rows="4" required></textarea>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label for="f-precio">Precio</label>
+                <input type="number" step="0.01" min="0" name="precio" id="f-precio" required>
+            </div>
+            <div class="campo">
+                <label for="f-stock">Stock</label>
+                <input type="number" min="0" name="stock" id="f-stock" required>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="f-categoria">Categoría</label>
+            <select name="categoria_id" id="f-categoria" required>
+                <?php foreach ($resultado_categorias as $categoria): ?>
+                    <option value="<?php echo htmlspecialchars($categoria['id']); ?>">
+                        <?php echo htmlspecialchars($categoria['nombre']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="f-imagen">Imagen</label>
+            <input type="text" name="imagen" id="f-imagen" required>
+        </div>
+
+        <label class="check" for="f-destacado">
+            <input type="checkbox" name="destacado" id="f-destacado">
+            Destacado
+        </label>
+
+        <div class="modal-acciones">
+            <button type="button" class="boton-cancelar"
+                    onclick="document.getElementById('agregarJuegoDialog').close();">Cancelar</button>
+            <button type="submit" class="boton-guardar">Guardar</button>
+        </div>
     </form>
-    </dialog>
+</dialog>
 
 <?php include_once(__DIR__ . '/../../components/footer/index.php'); ?>
 </body>

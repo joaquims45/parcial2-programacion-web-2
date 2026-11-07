@@ -1,5 +1,6 @@
+
 <?php
-$buscar_nombre = trim($_GET['buscar_por_nombre'] ?? '');
+$buscar_nombre = trim($buscar_nombre ?? $_GET['buscar_por_nombre'] ?? '');
 $categoria_activa = (int) ($_GET['categoria'] ?? 0);
 ?>
 
