@@ -1,0 +1,9 @@
+.admin-layout {
+    display: flex;
+    align-items: stretch;
+}
+
+.admin-contenido {
+    flex: 1;
+    min-width: 0;
+}
