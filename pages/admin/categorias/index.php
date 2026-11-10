@@ -106,7 +106,7 @@ try {
 
 <div class="admin-layout">
     <?php include_once(__DIR__ . '/../../../components/admin-sidebar/index.php'); ?>
-
+    <hr> </hr>
     <main class="admin-contenido">
         <?php $flash = get_flash(); ?>
         <?php if ($flash): ?>
