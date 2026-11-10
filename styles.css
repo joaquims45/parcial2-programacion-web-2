@@ -32,3 +32,21 @@ div.juegos-destacados{
     display: flex;
     gap: 20px;
     justify-content: center;}
+
+section.beneficios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1a1a1a;
+}
+
+div.beneficio-card {
+    flex: 1;
+    max-width: 300px;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #0d5f11;
+    border-radius: 8px;
+}

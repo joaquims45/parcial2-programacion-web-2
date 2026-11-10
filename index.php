@@ -37,6 +37,33 @@
         </div>
         </section>
 
+        <h2 class="titulo-juegos">Sobre nosotros</h2>
+
+        <section class="beneficios">
+            <div class="beneficio-card">
+                <img src="<?php echo BASE_URL; ?>/assets/secure-buy.png" alt="Compra segura" width="50px" height="50px">
+                <h3>Compra segura</h3>
+                <p>Garantizamos la seguridad de tus datos y transacciones.</p>
+            </div>
+            
+            <div class="beneficio-card">
+                <img src="<?php echo BASE_URL; ?>/assets/fast-delivery.png" alt="Entrega instantanea" width="50px" height="50px">
+                <h3>Entrega instantanea</h3>
+                <p>Recibe tus juegos de manera rápida y eficiente.</p>
+            </div>
+
+            <div class="beneficio-card">
+                <img src="<?php echo BASE_URL; ?>/assets/support.png" alt="Soporte al cliente" width="50px" height="50px">
+                <h3>Soporte al cliente</h3>
+                <p>Estamos aquí para ayudarte en cualquier momento.</p>
+            </div>
+
+            <div class="beneficio-card">
+                <img src="<?php echo BASE_URL; ?>/assets/discount.png" alt="Descuentos y promociones" width="50px" height="50px">
+                <h3>Descuentos y promociones</h3>
+                <p>Aprovecha nuestras ofertas especiales y ahorra en tus compras.</p>
+        </section>
+
     </main>
                         <?php include_once("components/footer/index.php"); ?>
 
