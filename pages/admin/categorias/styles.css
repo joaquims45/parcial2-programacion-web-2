@@ -1,0 +1,166 @@
+.admin-layout {
+    display: flex;
+    align-items: stretch;
+}
+
+.admin-contenido {
+    flex: 1;
+    min-width: 0;
+}
+
+.categoria-card{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #0d5f11;  
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+dialog {
+    width: min(480px, calc(100vw - 32px));
+    padding: 0;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    color: #f0f4ff;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.modal-cerrar {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-cerrar:hover {
+    color: #fff;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.fila {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-form label {
+    font-size: 0.9rem;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="number"],
+.modal-form select,
+.modal-form textarea {
+    width: 100%;
+    padding: 8px 10px;
+    background-color: #111;
+    color: #f0f4ff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.modal-form textarea {
+    resize: vertical;
+}
+
+.modal-form input:focus,
+.modal-form select:focus,
+.modal-form textarea:focus {
+    outline: none;
+    border-color: #4ade80;
+}
+
+.modal-form .check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.modal-acciones button {
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.boton-guardar {
+    background-color: #4ade80;
+    color: #111;
+    border: none;
+    font-weight: 600;
+}
+
+.boton-guardar:hover {
+    background-color: #22c55e;
+}
+
+.boton-cancelar {
+    background: transparent;
+    color: #f0f4ff;
+    border: 1px solid #444;
+}
+
+.boton-cancelar:hover {
+    border-color: #888;
+}
+
+
+.borrar {
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #000000;
+    border-color: #f87171;
+    background-color: #f87171;
+
+}
+
+.borrar:hover {
+    background-color: #f87171;
+    color: #111;
+}
+
+.categoria-card form {
+    margin-left: auto;
+}
