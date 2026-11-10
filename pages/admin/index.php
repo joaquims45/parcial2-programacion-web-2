@@ -140,9 +140,13 @@ try {
 </head>
 
 <body>
-    
+
 <?php include_once(__DIR__ . '/../../components/header/index.php'); ?>
 
+<div class="admin-layout">
+<?php include_once(__DIR__ . '/../../components/admin-sidebar/index.php'); ?>
+<hr> </hr>
+<main class="admin-contenido">
 <?php $flash = get_flash(); ?>
 <?php if ($flash): ?>
     <div class="flash flash-<?php echo htmlspecialchars($flash['tipo']); ?>">
@@ -161,6 +165,8 @@ try {
         <?php endwhile; ?>
     </div>
 </section>
+</main>
+</div>
 
 
 <dialog id="agregarJuegoDialog">

@@ -1,3 +1,13 @@
+.admin-layout {
+    display: flex;
+    align-items: stretch;
+}
+
+.admin-contenido {
+    flex: 1;
+    min-width: 0;
+}
+
 .nuevo {
     background-color: #4ade80;
     color: #111;
