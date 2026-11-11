@@ -10,7 +10,8 @@ div.juego {
     background-color: #1a1a1a;
     border-radius: 10px;
     padding: 20px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     text-align: center;
 }
 
@@ -23,8 +24,25 @@ div.juego p {
 
 
 div.juego img{
-    width: 460px;
-    height: 215px;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 460 / 215;
+    object-fit: cover;
+}
+
+@media (max-width: 480px) {
+    div.juego {
+        padding: 14px;
+    }
+
+    div.juego p {
+        min-height: 0;
+    }
+
+    div.acciones button {
+        min-height: 44px;
+    }
 }
 
 div.acciones {

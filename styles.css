@@ -31,7 +31,9 @@ h2.titulo-juegos {
 div.juegos-destacados{
     display: flex;
     gap: 20px;
-    justify-content: center;}
+    justify-content: center;
+    flex-wrap: wrap;}
+
 
 section.beneficios {
     display: flex;
@@ -40,6 +42,7 @@ section.beneficios {
     text-align: center;
     padding: 40px 20px;
     background-color: #1a1a1a;
+    flex-wrap: wrap;
 }
 
 div.beneficio-card {
@@ -49,4 +52,10 @@ div.beneficio-card {
     padding: 20px;
     background-color: #0d5f11;
     border-radius: 8px;
+}
+
+
+.img {
+    max-width: 100%;
+    height: auto;
 }

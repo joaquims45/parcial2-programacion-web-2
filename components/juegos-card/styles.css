@@ -3,7 +3,7 @@ div.juego {
     background-color: #1a1a1a;
     border-radius: 10px;
     padding: 20px;
-    width: 500px;
+    max-width: 500px;
     text-align: center;
 }
 
@@ -18,8 +18,3 @@ div.juego p {
     font-size: 1rem;
 }
 
-
-div.juego img{
-    width: 460px;
-    height: 215px;
-}

@@ -1,24 +1,31 @@
 nav {
     display: flex;
+    flex-wrap: wrap;
     background-color: #141414;
     justify-content: flex-start;
     align-items: center;
-    gap: 54px;
-    padding: 10px;
+    gap: 16px 54px;
+    padding: 10px 20px;
 }
 
+nav img {
+    flex-shrink: 0;
+}
 
 nav ul {
     display: flex;
-    gap: 54px;
+    flex-wrap: wrap;
+    gap: 12px 54px;
     list-style: none;
-
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-
+    display: inline-block;
+    padding: 8px 0;
 }
 
 nav ul li a:hover {
@@ -26,13 +33,30 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-nav input {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    margin-left: 0;
+@media (max-width: 768px) {
+    nav {
+        gap: 12px 24px;
+        padding: 10px 16px;
+    }
+
+    nav img {
+        width: 50px;
+        height: 50px;
+    }
+
+    nav ul {
+        gap: 8px 24px;
+    }
 }
 
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 4px 20px;
+    }
+}

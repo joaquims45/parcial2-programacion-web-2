@@ -164,3 +164,24 @@ dialog::backdrop {
 .categoria-card form {
     margin-left: auto;
 }
+
+@media (max-width: 480px) {
+    .categoria-card h2,
+    .categoria-card p {
+        margin: 0;
+    }
+
+    .categoria-card {
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+
+    .categoria-card form {
+        flex: 1 1 100%;
+    }
+
+    .categoria-card .borrar {
+        width: 100%;
+        min-height: 44px;
+    }
+}

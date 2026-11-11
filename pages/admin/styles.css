@@ -161,9 +161,37 @@ dialog::backdrop {
     border-color: #888;
 }
 
+@media (max-width: 768px) {
+    .admin-barra {
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 16px 0;
+    }
+
+    .admin-barra .buscador {
+        flex: 1 1 100%;
+    }
+
+    .flash {
+        margin: 16px 0;
+    }
+}
+
 @media (max-width: 480px) {
     .fila {
         flex-direction: column;
+    }
+
+    .admin-barra .nuevo {
+        width: 100%;
+    }
+
+    .modal-acciones {
+        flex-direction: column-reverse;
+    }
+
+    .modal-acciones button {
+        width: 100%;
     }
 }
 

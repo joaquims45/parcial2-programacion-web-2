@@ -25,3 +25,37 @@ button {
 button:hover {
     background-color: #22c55e;
 }
+
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+        min-height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .admin-sidebar button {
+        flex: 1 1 calc(50% - 8px);
+    }
+
+    .admin-layout > hr {
+        width: 100%;
+        margin: 0;
+    }
+
+    .admin-contenido {
+        padding: 0 16px 24px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .admin-sidebar button {
+        flex: 1 1 0;
+    }
+}
